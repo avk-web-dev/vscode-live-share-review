@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Совместная работа в Visual Studio Code</title>
+    <meta name="description" content="Инструкция по организации совместной работы в Visual Studio Code с использованием расширение Live Share, а также связующего аккаунта на GitHub.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        section {
+            position: relative;
+        }
+
+        h1 {
+            counter-reset: h2-counter; 
+        }
+
+        h2 {
+            counter-increment: h2-counter;
+            counter-reset: h3-counter; 
+        }
+
+        h2::before {
+            content: counter(h2-counter) ". ";
+        }
+        
+        h3 {
+            counter-increment: h3-counter;
+        }
+
+        h3::before {
+            content: counter(h2-counter) "." counter(h3-counter) ". ";
+        }
+    </style>
+</head>
+<body>
+    <main class="container py-5">
+        <article class="col-9">
+            <h1>Совместная работа в Visual Studio Code</h1>
+
+            <section id="preparation">
+                <h2>Подготовка к работе</h2>
+
+                <section id="join-github">
+                    <h3>Регистрация аккаунта на GitHub</h3>
+                    <p>Перед началом совместной работы необходимо <a href="https://github.com/join">зарегистрировать аккаунт на GitHub</a>, так как в дальнейшем он будет необходим для осуществления авторизации в сервисе совместной разработки <a href="https://visualstudio.microsoft.com/ru/services/live-share/">Visual Studio Live Share</a>, который выступает в качестве связующего облака между всеми участниками сессии разработки.</p>
+                </section>
+                
+                <section id="install-vscode">
+                    <h3>Установка Visual Studio Code</h3>
+                    <p>Поскольку совместная работа над проектами будет осуществлятся в редакторе Visual Studio Code, то его необходимо скачать по одной из нижеприведенных ссылок, а затем установить.</p>
+                    <p>
+                        <a class="btn btn-primary" href="https://code.visualstudio.com/docs/?dv=win">Скачать для Windows</a>
+                        <a class="btn btn-primary" href="https://code.visualstudio.com/docs/?dv=osx">Скачать для MacOS</a>
+                        <a class="btn btn-primary" href="https://code.visualstudio.com/docs/?dv=linux">Скачать для Linux</a>
+                    </p>
+                    <p>Либо самостоятельно выбрать необходимую версию на <a href="https://code.visualstudio.com/">официальном сайте</a>.</p>
+                </section>
+
+                <section id="install-live-share-extension">
+                    <h3>Установка расширение Live Share</h3>
+                    <p>Для организации подключения к сервису Visual Studio Live Share необходим <a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsls-vs">плагин Live Share</a> и чтобы его установить нужно нажать на кнопку <a class="btn btn-sm btn-primary" href="vscode:extension/MS-vsliveshare.vsliveshare">Установить Live Share</a> и дать браузеру разрешение на открытие редактора Visual Studio Code.</p>
+                    <p>После осуществления данного действия в <abbr title="Visual Studio Code">VSCode</abbr> откроется страница соответствующего плагина, на которой необходимо будет <strong>нажать на зеленую кнопку «Install»</strong>, расположение которой указано на следующем рисунке.</p>
+                    <p><img class="img-fluid rounded" src="./install-live-share-extension.png" alt="Страница плагина Live Share открытая в Visual Studio Code, где указано расположение зеленой кнопки «Install»"></p>
+                    <p>Далее необходимо дождаться установки расширения и можно переходить к дальнийшим действиям.</p>
+                </section>
+
+                <section id="sing-in-visual-studio-live-share">
+                    <h3>Авторизация в сервисе Visual Studio Live Share</h3>
+                    <p>Для авторазиации в сервисе Visual Studio Live Share надо на панели в нижней части редактора, в левом углу, <strong>найти кнопку «Live Share»</strong>, представленную на следующем рисунке.</p>
+                    <p><img class="img-fluid rounded" src="./status-bar-live-share-button.png" alt="Вид кнопки «Live Share» на нажней панели редактора Visual Studio Code"></p>
+                    <p>После клика по данной кнопке появиться окно с выбором способа авторизации. Необходимо <strong>выбрать способ «Sign in with GitHub»</strong>.</p>
+                    <p><img class="img-fluid rounded" src="./sign-in-to-visual-studio-live-share.png" alt="Вид кнопки «Live Share» на нажней панели редактора Visual Studio Code"></p>
+                    <p>В открытвшемся окне браузера необходимо <strong>войти в аккаунт на Github</strong>, ранее созданный или уже имеющийся, с помощью формы представленной на следующем рисунке.</p>
+                    <p><img class="img-fluid rounded" src="./sign-in-to-github.png" alt="Вид формы входа в аккаунт GitHub"></p>
+                    <p>Затем нужно <strong>нажать на кнопку «Authorize VisualStudioLiveShare»</strong>, чтобы предоставить сервису Visual Studio Live Share доступ к информации на Вашем GitHub-аккаунте. Расположение данной кнопки продемонстрировано на следующем рисунке.</p>
+                    <p><img class="img-fluid rounded" src="./authorize-visual-studio-live-share.png" alt="Страница OAuth-авторизации с помощью GitHub, где указано расположение зеленой кнопки «Authorize VisualStudioLiveShare»"></p>
+                    <p>После проделанных действий <strong>браузер совершит перенаправление на страницу с заголовоком «Готовы к совместной работе!»</strong>, где также необходимо будет разрешить браузеру открытие редактора <abbr title="Visual Studio Code">VSCode</abbr></p>
+                    <p>Если все прошло успешно, то в правом нижнем углу редактора появиться уведомление представленное на следующем рисунке. Оно сигнализирует о том, что началась сессия вещания.</p>
+                    <p><img class="img-fluid rounded" src="./live-share-success-notification.png" alt="Вид уведомления от расширения Live Share сигнализирующий о том, что вещание успешно началось."></p>
+                    <p>Теперь на нижней панели редактора, в левом углу, должны появиться <strong>имя пользователя GitHub-аккаунта</strong> и <strong>иконка показывающая количество человек</strong>, подключенных к запущенной в данный момент сессии вещания, что представлено на следующем рисунке.</p>
+                    <p><img class="img-fluid rounded" src="./status-bar-live-share-active.png" alt=""></p>
+                    <p><strong>Кликнув на имя пользователя GitHub-аккаунта</strong> Вы откроете меню, которое появиться в верхней части экрана и будет выглядеть следующим образом:</p>
+                    <p><img class="img-fluid rounded" src="./user-online-menu.png" alt=""></p>
+                    <p>Детальный обзор содержимого данного меню, в зависимости от контекста его использования, будет осуществлен в последующих разделах. Однако, в данный момент стоит лишь <strong>воспользоваться пунктом меню «Stop Collaboration Session»</strong> для того, чтобы прервать текущую сессию вещания.</p>
+                </section>
+
+                <!-- <section id="live-share-settings">
+                    <h3>Настройка расширения Live Share</h3>
+                    <p>Для того, чтобы перейти к настройкам плагина Live Share, необходимо воспользоваться сочетанием клавиш <kbd>Ctrl</kbd> + <kbd>,</kbd> (на русской клавиатуре <kbd>Ctrl</kbd> + <kbd>Б</kbd>) и ввести в поисковую строку следующее:</p>
+                    <p><strong>@ext:ms-vsliveshare.vsliveshare</strong></p>
+                    <p>Далее можно самостоятельно настроить плагин под свои требования. Однако, можно порекомендовать обратить внимание на <strong>настройки общие для организатора и участников</strong>:</p>
+                    <ul>
+                        <li>
+                            <div><strong>Name Tag Visibility</strong> - настройка отвечающая за отображение имени пользователя напротив его курсора.</div>
+                            <ul>
+                                <li><strong class="text-success">always</strong> - отображать всегда</li>
+                                <li><strong class="text-warning">activity</strong> - отображать во время какой-либо активности пользователя</li>
+                                <li><strong class="text-danger">never</strong> - никогда не отображать</li>
+                            </ul>
+                        </li>
+                        <li><strong>Show Verbose Notitications</strong> - настройка, в виде чекбокса, отвечающая за отображение уведомлений о том, что кто-то подключился к текущей сессии вещания или отключился от нее.</li>
+                    </ul>
+                    <p><strong>Настройки, на которые следует обратить внимание организатору</strong>, будут рассмотрены в следующем разделе.</p>
+                </section> -->
+
+            </section>
+
+            <section id="live-share-interface-review">
+                <h2 class="text-danger">Обзор интерфейса расширения Live Share</h2>
+            </section>
+
+            <section id="host-actions">
+                <h2>Действия организатора</h2>
+
+                <section id="open-project">
+                    <h3>Выбор рабочего проекта</h3>
+                    <p>Перед тем как запустить сессию вещания, необходимо <strong>сначала открыть в редакторе папку нужного рабочего проекта</strong>. При чем это <strong>касается также функционала запланированных сессии</strong>, которые будут рассмотрены в следующем подразделе.</p>
+                    <p>Стоит также отметить, что если Вы в данный момент ведете вещание рабочей сессии, то <strong>открытие другого проекта приведет к созданию нового окна редактора</strong>.</p>
+                    <p>Кроме того, <strong>при закрытии окна с активной сессией вещания - она будет прервана</strong>.</p>
+                </section>
+
+                <section id="plan-session">
+                    <h3>Планирование сессии</h3>
+                    <p>Для того, чтобы <strong>создать постоянную ссылку на сессию</strong> можно воспользоваться функционалом вкладки «Planned Sessions», которая доступна пользователю, когда он не находиться в какой-либо сессии. Она представлена на следующем рисунке.</p>
+                    <p><img class="rounded" src="./live-share/sidebar/panel/planned-sessions.png" alt=""></p>
+                    <p>Сперва необходимо <strong>нажать на кнопку плюса</strong> <img class="rounded" src="./live-share/actions/plan-session/step-1.png" alt="">, после чего появиться поле, в котором необходимо ввести название для запланированной сессии, как показано на следующем рисунке.</p>
+                    <p><img class="rounded" src="./live-share/actions/plan-session/step-2.png" alt=""></p>
+                    <p>После выполнения данных действий соответствующая сессия появиться в списке запланированных. Далее необходимо <strong>навести курсор на запланированную сессию</strong> и можно будет увидеть две иконки представленые на следующим рисунке.</p>
+                    <p><img class="rounded" src="./live-share/actions/plan-session/step-3.png" alt=""></p>
+                    <p>Если <strong>нажать на иконку планшета</strong> <img class="rounded" src="./live-share/actions/plan-session/step-4.png" alt="">, то можно <strong>скопировать ссылку на выбранную сессию</strong>. Полученную ссылку необходимо <strong>разослать участникам сессии</strong>.</p>
+                    <p>Для того, чтобы <strong>начать вещание запланированной сессии</strong>, необходимо <strong>кликнуть по иконке открытия внешней ссылки</strong> <img class="rounded" src="./live-share/actions/plan-session/step-5.png" alt="">.</p>
+                </section>
+
+            </section>
+
+            <section id="participant-actions">
+                <h2>Действия участника</h2>
+                <p>Для начала, перед тем как выполнять действия из данного раздела, необходимо <strong>проделать действия из <a href="#preparation">раздела 1</a></strong>, а также <strong>изучить интерфейс плагина LiveShare в <a href="#live-share-interface-review">разделе 2</a></strong></p>
+                <p>Чтобы присоединится к какой-либо сессии Вам необходимо <strong>получить у организатора ссылку</strong> примерно следующего вида:</p>
+                <div class="form-group">
+                    <input class="form-control" type="text" readonly value="https://prod.liveshare.vsengsaas.visualstudio.com/join?32F8ADC293BE2EAECBF069082B0ED345FFCE">
+                </div>
+                <p>Далее необходимо <strong>нажать на кнопку управления Live Share аккаунтом</strong> <img class="rounded" src="./live-share/user-button.png" alt=""> и дождаться открытия меню управления аккаунтом. В данном меню Вам необходимо <strong>выбрать пункт «Join Collaboration Session»</strong>, как показано на следующем риснуке.</p>
+                <p><img class="rounded" src="./live-share/menus/out-of-session/join-session-step-1.png" alt=""></p>
+                <p>Затем появиться поле ввода, куда необходимо будет <strong>вставить ранее полученную ссылку</strong>, как показано на следующем рисунке.</p>
+                <p><img class="rounded" src="./live-share/menus/out-of-session/join-session-step-2.png" alt=""></p>
+                <p>Если все действия были выполнены правильно и сессия не была прервана организатором, то Вы должны будете присоединиться к ней и <strong>принимать участие в совместной разработке!</strong></p>
+            </section>
+
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('[title]').tooltip();
+            $('section').each(function () {
+                if (this.id) {
+                    var childHeading = $(this).find("h1, h2, h3, h4, h5, h6").first();
+                    
+                    var whitespace = $('<span> </span>');
+                    var anchor = $('<a href="#' + this.id + '">#<a/>');
+                    
+                    $(whitespace).appendTo(childHeading);
+                    $(anchor).appendTo(childHeading);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
